@@ -49,7 +49,7 @@ function init() {
     /** LISTEN FOR EVENTS **/
     submitButton.addEventListener("click", () => {    
         // TODO: Add typeInput object to get the clicked radio button (see Part B, 3a)
-
+        const typeInput = document.querySelector('input[name="type-input"]:checked');
         // TODO: Validate the type and keyword inputs (see Part B, 5)
         // TODO: Call the handler function (see Part B, 3c)
         // TODO: Prevent the default page reload (see Part B, 3d)
@@ -66,7 +66,9 @@ function init() {
     function handleSubmitClick(type) {       
         // TODO: Call the resetResultsArea() function (see Part D, 2f)
         // TODO: Give currentDrinks all of the objects from allDrinks (see Part B, 3b-1)
-        // TODO: Call filterDrinks and pass in the three input values (see Part B, 3b-2)     
+        let currentDrinks = allDrinks.slice();
+        // TODO: Call filterDrinks and pass in the three input values (see Part B, 3b-2)
+        filterDrinks(type, categoryInput, keywordInput);     
         if (currentDrinks.length > 0) {
             // TODO: alphabetize results by name of drink - see sort function at bottom (see Part B, 3b-3)
             

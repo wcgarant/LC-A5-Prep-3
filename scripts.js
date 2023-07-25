@@ -25,7 +25,10 @@ window.addEventListener("load", function() {
 function init() {
 
     /** CREATE OBJECTS FROM HTML ELEMENTS **/
-
+    const keywordInput = document.getElementById("keyword-input");
+    const categoryInput = document.getElementById("category-input");
+    const submitButton = document.getElementById("submit-button");
+    const resetButton = document.getElementById("reset-button");
     // FORM
     // TODO: Add searchArea object (see Part D, 2a)
     // TODO: Add keywordInput, categoryInput, submitButton, and resetButton (see Part B, 1a)

@@ -68,7 +68,7 @@ function init() {
         // TODO: Give currentDrinks all of the objects from allDrinks (see Part B, 3b-1)
         let currentDrinks = allDrinks.slice();
         // TODO: Call filterDrinks and pass in the three input values (see Part B, 3b-2)
-        filterDrinks(type, categoryInput, keywordInput);     
+        filterDrinks(type, categoryInput, keywordInput);   
         if (currentDrinks.length > 0) {
             // TODO: alphabetize results by name of drink - see sort function at bottom (see Part B, 3b-3)
             

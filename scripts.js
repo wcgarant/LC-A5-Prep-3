@@ -25,17 +25,20 @@ window.addEventListener("load", function() {
 function init() {
 
     /** CREATE OBJECTS FROM HTML ELEMENTS **/
+    // FORM
+    // TODO: Add searchArea object (see Part D, 2a)
+    // TODO: Add keywordInput, categoryInput, submitButton, and resetButton (see Part B, 1a)
     const keywordInput = document.getElementById("keyword-input");
     const categoryInput = document.getElementById("category-input");
     const submitButton = document.getElementById("submit-button");
     const resetButton = document.getElementById("reset-button");
-    // FORM
-    // TODO: Add searchArea object (see Part D, 2a)
-    // TODO: Add keywordInput, categoryInput, submitButton, and resetButton (see Part B, 1a)
 
     // BELOW FORM
     // TODO: Add resultsArea object (see Part D, 2a)
     // TODO: Add searchResults, noResults, and noResultsText (see Part B, 1b)
+    const searchResults = document.getElementById("search-results");
+    const noResults = document.getElementById("no-results");
+    const noResultsText = document.getElementById("no-results-text");
     // TODO: Add emptyGlass object (see Part D, 2a)
 
     /** POPULATE DROPDOWN INPUT WITH FETCHED DATA **/

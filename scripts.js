@@ -49,6 +49,7 @@ function init() {
     /** LISTEN FOR EVENTS **/
     submitButton.addEventListener("click", () => {    
         // TODO: Add typeInput object to get the clicked radio button (see Part B, 3a)
+
         // TODO: Validate the type and keyword inputs (see Part B, 5)
         // TODO: Call the handler function (see Part B, 3c)
         // TODO: Prevent the default page reload (see Part B, 3d)

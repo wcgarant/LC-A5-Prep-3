@@ -71,7 +71,7 @@ function init() {
         filterDrinks(type, categoryInput, keywordInput);   
         if (currentDrinks.length > 0) {
             // TODO: alphabetize results by name of drink - see sort function at bottom (see Part B, 3b-3)
-            
+            sortByName(currentDrinks, 0, (currentDrinks.length -1))
             // Update values
             // TODO: add the recipe cards to the innerHTML of searchResults
             // TODO: change the value of 'display' for noResults to hide it

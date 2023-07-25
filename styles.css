@@ -346,7 +346,7 @@ a#db-link:hover {
 
 /* TODO: uncomment lines below (see Part D, 1b) */
 
-/* @keyframes fade-in {
+@keyframes fade-in {
 from {
     opacity: 0;
 }
@@ -373,4 +373,4 @@ to {
 100% {
     transform: rotate(720deg);
 }
-} */
+}

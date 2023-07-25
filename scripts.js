@@ -12,6 +12,9 @@ let currentDrinks = [];
 
 let colorClasses = {
     // TODO: add properties relating drink type with CSS class (see Part B, 6)
+    "alcoholic": "alcohol",
+    "non alcoholic": "no-alcohol",
+    "optional alcohol": "optional"
 }
 
 /** WINDOW LOAD LISTENER **/
@@ -51,14 +54,23 @@ function init() {
         // TODO: Add typeInput object to get the clicked radio button (see Part B, 3a)
         const typeInput = document.querySelector('input[name="type-input"]:checked');
         // TODO: Validate the type and keyword inputs (see Part B, 5)
+        let inputRegEx = /^[A-Za-z0-9\-]+$/
+        if (typeInput === null) {
+            alert("Must select a drink type.")
+        } else if (keywordInput.value !== "" && !inputRegEx.test(keywordInput.value)) {
+            alert("Must search using only valid alphanumeric characters and/or hyphen.")
+        } else {
         // TODO: Call the handler function (see Part B, 3c)
         handleSubmitClick(typeInput);
+        }
         // TODO: Prevent the default page reload (see Part B, 3d)
         event.preventDefault();
     });
 
     resetButton.addEventListener("click", () => {
         // TODO: Change the value of noResultsText and call the handler for the reset button depending on the value of currentDrinks (see Part B, 4b) 
+        noResultsText.innerHTML = "Ready for a new search?";
+        handleResetClick();
         // TODO: Add spinGlass("click") to the condition that currentDrinks is empty (see Part D, 2d)
     });
 
@@ -92,6 +104,9 @@ function init() {
     function handleResetClick() { 
         // Update values
         // TODO: Reset currentDrinks, searchResults, and noResults (see Part B, 4a, 2-4) 
+        currentDrinks = [];
+        searchResults.innerHTML = '';
+        noResults.style.display = 'block';
         // Trigger animations
         // TODO: Call three functions (see Part D, 2g)
     };

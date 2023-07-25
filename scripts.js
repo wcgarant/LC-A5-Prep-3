@@ -88,7 +88,7 @@ function init() {
             sortByName(currentDrinks, 0, (currentDrinks.length -1))
             // Update values
             // TODO: add the recipe cards to the innerHTML of searchResults
-            setRecipeCards();
+            searchResults.innerHTML = setRecipeCards();
             // TODO: change the value of 'display' for noResults to hide it
             noResults.style.display = "none";
             // Trigger animations
@@ -118,7 +118,7 @@ function init() {
 
 /** FETCH DATA FROM PUBLIC API **/
 
-function fetchDrinks() {
+async function fetchDrinks() {
     /* 
         The API lets us retrieve drinks in bulk by first letter of the name, so we need to loop over the alphabet and send the requests separately.
     */
@@ -126,7 +126,7 @@ function fetchDrinks() {
     let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=";
     for (let a=0; a < alpha.length; a++) {
         let fullURL = baseURL + alpha[a];
-        fetch(fullURL).then( function(response) {
+        await fetch(fullURL).then( function(response) {
             response.json().then( function(json) {
                 let drinkObjects = json.drinks;
                 let drinksByLetter = [];
@@ -165,6 +165,7 @@ function fetchDrinks() {
             });
         });
     }
+    // console.log(allDrinks)
     fetchCategories();
 }
 
@@ -176,7 +177,7 @@ function fetchCategories() {
             let categoryObjects = json.drinks;
             categories = categoryObjects.map(category => category.strCategory.split(" / ").join("/"));
             categories.sort();
-            console.log("Categories loaded.");
+            // console.log("Categories loaded.");
             init();       
         });
     });

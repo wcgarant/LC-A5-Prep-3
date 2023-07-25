@@ -26,7 +26,6 @@ window.addEventListener("load", function() {
 
 /** MAIN FUNCTION **/
 function init() {
-
     /** CREATE OBJECTS FROM HTML ELEMENTS **/
     // FORM
     // TODO: Add searchArea object (see Part D, 2a)
@@ -52,7 +51,7 @@ function init() {
     /** LISTEN FOR EVENTS **/
     submitButton.addEventListener("click", (event) => {    
         // TODO: Add typeInput object to get the clicked radio button (see Part B, 3a)
-        const typeInput = document.querySelector('input[name="type-input"]:checked');
+        let typeInput = document.querySelector('input[name=type-input]:checked');
         // TODO: Validate the type and keyword inputs (see Part B, 5)
         let inputRegEx = /^[A-Za-z0-9\-]+$/
         if (typeInput === null) {
@@ -62,9 +61,9 @@ function init() {
         } else {
         // TODO: Call the handler function (see Part B, 3c)
         handleSubmitClick(typeInput);
-        }
         // TODO: Prevent the default page reload (see Part B, 3d)
         event.preventDefault();
+        }
     });
 
     resetButton.addEventListener("click", () => {
@@ -80,9 +79,11 @@ function init() {
     function handleSubmitClick(type) {       
         // TODO: Call the resetResultsArea() function (see Part D, 2f)
         // TODO: Give currentDrinks all of the objects from allDrinks (see Part B, 3b-1)
-        let currentDrinks = allDrinks.slice();
+        currentDrinks = allDrinks.slice();
         // TODO: Call filterDrinks and pass in the three input values (see Part B, 3b-2)
-        filterDrinks(type, categoryInput, keywordInput);   
+        filterDrinks(type, categoryInput.value, keywordInput.value);  
+        
+        
         if (currentDrinks.length > 0) {
             // TODO: alphabetize results by name of drink - see sort function at bottom (see Part B, 3b-3)
             sortByName(currentDrinks, 0, (currentDrinks.length -1))
@@ -96,7 +97,7 @@ function init() {
         } else {
             // Update values
             // TODO: Change the value of the innerHTML for noResultsText (see Part B, 3b-3)
-            noResults.style.display = "No results found. Try again!"
+            noResults.innerHTML = "No results found. Try again!"
             // Trigger animations
             // TODO: Call handleResetClick() (see Part D, 2f)         
         }
@@ -118,7 +119,7 @@ function init() {
 
 /** FETCH DATA FROM PUBLIC API **/
 
-async function fetchDrinks() {
+function fetchDrinks() {
     /* 
         The API lets us retrieve drinks in bulk by first letter of the name, so we need to loop over the alphabet and send the requests separately.
     */
@@ -126,7 +127,7 @@ async function fetchDrinks() {
     let baseURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=";
     for (let a=0; a < alpha.length; a++) {
         let fullURL = baseURL + alpha[a];
-        await fetch(fullURL).then( function(response) {
+        fetch(fullURL).then( function(response) {
             response.json().then( function(json) {
                 let drinkObjects = json.drinks;
                 let drinksByLetter = [];
@@ -165,7 +166,6 @@ async function fetchDrinks() {
             });
         });
     }
-    // console.log(allDrinks)
     fetchCategories();
 }
 
@@ -177,7 +177,6 @@ function fetchCategories() {
             let categoryObjects = json.drinks;
             categories = categoryObjects.map(category => category.strCategory.split(" / ").join("/"));
             categories.sort();
-            // console.log("Categories loaded.");
             init();       
         });
     });

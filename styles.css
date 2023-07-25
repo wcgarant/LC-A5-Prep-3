@@ -127,8 +127,8 @@ div#header-text {
     margin-bottom: 20px;
     box-shadow: 4px 4px 20px #ddd;
     /* TODO: uncomment lines below (see Part D, 1a) */
-    /* display: none;
-    animation: none; */
+    display: none;
+    animation: none;
 }
 
 .search-row {
@@ -191,8 +191,8 @@ button#submit-button:hover {
 #results-area { /* encompasses both search-results and no-results */
     flex-direction: column;
     /* TODO: uncomment lines below (see Part D, 1a) */
-    /* display: none; */
-    /* animation: none; */
+    display: none;
+    animation: none;
 }
 
 /* RESULTS COUNT & RECIPE CARDS */
@@ -347,30 +347,30 @@ a#db-link:hover {
 /* TODO: uncomment lines below (see Part D, 1b) */
 
 /* @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
 }
 
 @keyframes zoom-spin {
-    0% {
-        transform: rotate(0deg);
-        width: 10px;
-    }
-    100% {
-        transform: rotate(1080deg);
-        width: 250px;
-    }
+0% {
+    transform: rotate(0deg);
+    width: 10px;
+}
+100% {
+    transform: rotate(1080deg);
+    width: 250px;
+}
 }
 
 @keyframes spin-only {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(720deg);
-    }
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(720deg);
+}
 } */

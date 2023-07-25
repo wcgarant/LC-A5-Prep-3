@@ -29,24 +29,29 @@ function init() {
     /** CREATE OBJECTS FROM HTML ELEMENTS **/
     // FORM
     // TODO: Add searchArea object (see Part D, 2a)
+    const searchArea = document.getElementById("results-area")
     // TODO: Add keywordInput, categoryInput, submitButton, and resetButton (see Part B, 1a)
     const keywordInput = document.getElementById("keyword-input");
     const categoryInput = document.getElementById("category-input");
     const submitButton = document.getElementById("submit-button");
     const resetButton = document.getElementById("reset-button");
-
     // BELOW FORM
     // TODO: Add resultsArea object (see Part D, 2a)
+    const resultsArea = document.getElementById("results-area");
     // TODO: Add searchResults, noResults, and noResultsText (see Part B, 1b)
     const searchResults = document.getElementById("search-results");
     const noResults = document.getElementById("no-results");
     const noResultsText = document.getElementById("no-results-text");
     // TODO: Add emptyGlass object (see Part D, 2a)
-
+    const emptyGlass = document.getElementById("empty-glass")
     /** POPULATE DROPDOWN INPUT WITH FETCHED DATA **/
     // TODO: Set innerHTML of dropdown box (see Part B, 2)
     categoryInput.innerHTML = setCategoryOptions();
     // TODO: Copy in initial triggers for animations (see Part D, 2c)
+    /** MAKE SEARCH AREA & RESULTS AREA VISIBLE UPON LOAD **/
+    fadeInSearchBox();
+    fadeInResultsArea();
+    spinGlass("zoom");
 
     /** LISTEN FOR EVENTS **/
     submitButton.addEventListener("click", (event) => {    
@@ -71,13 +76,19 @@ function init() {
         noResultsText.innerHTML = "Ready for a new search?";
         handleResetClick();
         // TODO: Add spinGlass("click") to the condition that currentDrinks is empty (see Part D, 2d)
+        spinGlass("click");
     });
 
     // TODO: Add listener for empty glass image (see Part D, 2e)
+    emptyGlass.addEventListener("click", () => {
+        spinGlass("click");
+    });
 
     /** HANDLE SOME OF THE LOGIC FOR EVENT LISTENERS **/
     function handleSubmitClick(type) {       
         // TODO: Call the resetResultsArea() function (see Part D, 2f)
+         // Temporarily hide everything below form and remove animation
+         resetResultsArea();
         // TODO: Give currentDrinks all of the objects from allDrinks (see Part B, 3b-1)
         currentDrinks = allDrinks.slice();
         // TODO: Call filterDrinks and pass in the three input values (see Part B, 3b-2)
@@ -94,12 +105,16 @@ function init() {
             noResults.style.display = "none";
             // Trigger animations
             // TODO: Add setTimeout function with fadeInResultsArea() (see Part D, 2f)
+            setTimeout(() => {         
+                fadeInResultsArea();
+            }, 150); // Slight delay to accommodate image loading
         } else {
             // Update values
             // TODO: Change the value of the innerHTML for noResultsText (see Part B, 3b-3)
             noResults.innerHTML = "No results found. Try again!"
             // Trigger animations
-            // TODO: Call handleResetClick() (see Part D, 2f)         
+            // TODO: Call handleResetClick() (see Part D, 2f)
+            handleResetClick();         
         }
     };
     function handleResetClick() { 
@@ -110,9 +125,31 @@ function init() {
         noResults.style.display = 'block';
         // Trigger animations
         // TODO: Call three functions (see Part D, 2g)
+        resetResultsArea(); 
+        fadeInResultsArea();
+        spinGlass("zoom");
     };
 
     // TODO: Add animation trigger functions (see Part D, 2b)
+    function fadeInSearchBox() {
+        searchArea.style.display = "block";
+        searchArea.style.animation = "fade-in 3s";
+    };
+    function resetResultsArea() {
+        resultsArea.style.display = "none";
+        resultsArea.style.animation = "none";
+    };
+    function fadeInResultsArea() {
+        resultsArea.style.display = "block";
+        resultsArea.style.animation = "fade-in 2s";
+    };
+    function spinGlass(mode) {
+        emptyGlass.style.animation = (mode === "zoom" ? "zoom-spin 2s" : "spin-only 1.5s");
+        let spin = emptyGlass.getAnimations()[0];
+        spin.finish();
+        spin.play();
+        emptyGlass.style.animation = "none";
+    };
 
 } // End of init()
 
